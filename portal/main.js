@@ -1,9 +1,9 @@
 import Vue from 'vue'
 import App from './App.vue'
-import LvApp from 'src'
+import PlApp from 'src'
 
 Vue.config.productionTip = false
-Vue.use(LvApp)
+Vue.use(PlApp)
 
 new Vue({
     render: h => h(App),

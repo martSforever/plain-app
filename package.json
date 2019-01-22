@@ -1,11 +1,11 @@
 {
-  "name": "lv-app",
+  "name": "pl-app",
   "version": "0.1.0",
   "scripts": {
     "start": "npm run serve",
     "serve": "vue-cli-service serve",
     "build:page": "vue-cli-service build",
-    "build": "vue-cli-service build --target lib --name lv-app src/index.js --dest dist",
+    "build": "vue-cli-service build --target lib --name pl-app src/index.js --dest dist",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {

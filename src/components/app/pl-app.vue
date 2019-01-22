@@ -12,6 +12,6 @@
 
 <script>
     export default {
-        name: "lv-app",
+        name: "pl-app",
     }
 </script>

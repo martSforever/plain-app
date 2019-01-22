@@ -1,4 +1,4 @@
-import app from './app/lv-app'
+import app from './app/pl-app'
 import icon from './icon/lv-icon'
 import page from './page/lv-page'
 import content from './page/lv-content'

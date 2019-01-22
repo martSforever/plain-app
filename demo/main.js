@@ -1,11 +1,11 @@
 import Vue from 'vue'
 import App from './App.vue'
-import LvApp from 'src'
+import PlApp from 'src'
 import allPages from './page'
 import './styles/index.scss'
 
 Vue.config.productionTip = false
-Vue.use(LvApp, {
+Vue.use(PlApp, {
     iconfont: 'https://at.alicdn.com/t/font_954560_ushjleuazj.js',                               //自定义iconfont图表地址
     allPages,
     prefix: 'link',
