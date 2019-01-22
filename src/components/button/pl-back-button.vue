@@ -1,16 +1,16 @@
 <template>
-    <div class="lv-back-button" @click="handleClick">
-        <lv-icon icon="lv-arrow-left"/>
+    <div class="pl-back-button" @click="handleClick">
+        <pl-icon icon="pl-arrow-left"/>
         <span>返回</span>
     </div>
 </template>
 
 <script>
-    import LvIcon from "src/components/icon/lv-icon";
+    import PlIcon from "src/components/icon/pl-icon";
 
     export default {
-        name: "lv-back-button",
-        components: {LvIcon},
+        name: "pl-back-button",
+        components: {PlIcon},
         methods: {
             handleClick() {
                 this.$nav.pop()
@@ -21,7 +21,7 @@
 </script>
 
 <style lang="scss">
-    .lv-back-button {
+    .pl-back-button {
         display: inline-block;
         color: $color-primary;
         box-sizing: border-box;

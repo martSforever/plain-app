@@ -32,7 +32,7 @@
                     {icon: 'icon-youtubeplay', path: 'button', label: 'button'},
                     {icon: 'icon-scroll', path: 'scroll', label: 'scroll'},
                     {icon: 'icon-loading', path: 'loading', label: 'loading'},
-                    {icon: 'lv-switch-on', path: 'toggle', label: 'toggle'},
+                    {icon: 'pl-switch-on', path: 'toggle', label: 'toggle'},
                     {icon: 'icon-boardsheet', path: 'picker', label: 'picker'},
                 ]
             }
@@ -47,7 +47,7 @@
 
 <style lang="scss">
     .main-page {
-        .lv-item {
+        .pl-item {
             .icon {
                 margin-right: 12px;
             }

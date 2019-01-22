@@ -46,7 +46,7 @@
 
 <style lang="scss">
     .demo-loading {
-        .lv-loading {
+        .pl-loading {
             margin-bottom: 12px;
         }
     }

@@ -1,12 +1,12 @@
 <template>
-    <div class="lv-picker">
-        <ul class="lv-picker-ul" v-resize-detector="_resize">
-            <li v-for="(item,index) in data" class="lv-picker-li">
+    <div class="pl-picker">
+        <ul class="pl-picker-ul" v-resize-detector="_resize">
+            <li v-for="(item,index) in data" class="pl-picker-li">
                 <slot :data="{item:item,index:index}">{{item}}</slot>
             </li>
         </ul>
-        <div class="lv-picker-mask-top"></div>
-        <div class="lv-picker-mask-bottom"></div>
+        <div class="pl-picker-mask-top"></div>
+        <div class="pl-picker-mask-bottom"></div>
     </div>
 </template>
 
@@ -15,7 +15,7 @@
     import ResizeDetector from 'src/utils/resize-detector'
 
     export default {
-        name: "lv-picker",
+        name: "pl-picker",
         directives: {ResizeDetector},
         props: {
             value: {type: Number, default: 0},
@@ -43,8 +43,8 @@
                 wheel: {
                     selectedIndex: this.currentValue,
                     /** 默认值就是下面配置的两个，为了展示二者的作用，这里再配置一下 */
-                    wheelWrapperClass: 'lv-picker-ul',
-                    wheelItemClass: 'lv-picker-li'
+                    wheelWrapperClass: 'pl-picker-ul',
+                    wheelItemClass: 'pl-picker-li'
                 },
                 probeType: 3
             })
@@ -63,17 +63,17 @@
 
 <style lang="scss">
 
-    .lv-picker {
+    .pl-picker {
         height: 172px;
         overflow: hidden;
         font-size: 18px;
         position: relative;
-        .lv-picker-ul {
+        .pl-picker-ul {
             padding: 0;
             margin-top: 68px;
             line-height: 36px;
             list-style: none;
-            .lv-picker-li {
+            .pl-picker-li {
                 list-style: none;
                 height: 36px;
                 overflow: hidden;
@@ -82,18 +82,18 @@
                 text-align: center;
             }
         }
-        .lv-picker-mask-top, .lv-picker-mask-bottom {
+        .pl-picker-mask-top, .pl-picker-mask-bottom {
             position: absolute;
             left: 0;
             right: 0;
             height: 68px;
         }
-        .lv-picker-mask-top {
+        .pl-picker-mask-top {
             top: 0;
             background: linear-gradient(0deg, hsla(0, 0%, 100%, .4), hsla(0, 0%, 100%, .8));
             border-bottom: #ebebeb solid 1px;
         }
-        .lv-picker-mask-bottom {
+        .pl-picker-mask-bottom {
             bottom: 0;
             background: linear-gradient(180deg, hsla(0, 0%, 100%, .4), hsla(0, 0%, 100%, .8));
             border-top: #ebebeb solid 1px;

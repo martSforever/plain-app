@@ -41,7 +41,7 @@
         display: flex;
         flex-wrap: wrap;
         width: 100%;
-        .lv-button {
+        .pl-button {
             margin-right: 6px;
             margin-bottom: 6px;
         }

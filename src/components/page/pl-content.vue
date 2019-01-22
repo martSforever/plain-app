@@ -1,19 +1,19 @@
 <template>
-    <div class="lv-content" :class="classes">
+    <div class="pl-content" :class="classes">
         <slot></slot>
     </div>
 </template>
 
 <script>
     export default {
-        name: "lv-content",
+        name: "pl-content",
         props: {
             padding: {type: Boolean},
         },
         computed: {
             classes() {
                 return {
-                    ['lv-content-padding']: !!this.padding,
+                    ['pl-content-padding']: !!this.padding,
                 }
             },
         },
@@ -21,7 +21,7 @@
 </script>
 
 <style lang="scss">
-    .lv-content {
+    .pl-content {
         flex: 1;
         width: 100vw;
         display: flex;
@@ -30,7 +30,7 @@
         overflow-y: scroll;
         overflow-x: hidden;
 
-        &.lv-content-padding {
+        &.pl-content-padding {
             padding: $padding;
         }
     }

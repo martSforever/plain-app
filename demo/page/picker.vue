@@ -100,7 +100,7 @@
     .picker-wrapper {
         display: flex;
         flex-direction: row;
-        .lv-picker {
+        .pl-picker {
             flex: 1;
         }
     }

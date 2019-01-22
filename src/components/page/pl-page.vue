@@ -1,12 +1,12 @@
 <template>
-    <div class="lv-page" ref="page" :style="styles" :class="classes">
+    <div class="pl-page" ref="page" :style="styles" :class="classes">
         <slot></slot>
     </div>
 </template>
 
 <script>
     export default {
-        name: "lv-page",
+        name: "pl-page",
         props: {
             name: {},
         },
@@ -41,7 +41,7 @@
             },
             classes() {
                 return {
-                    'lv-page-touching': this.touch.initialized
+                    'pl-page-touching': this.touch.initialized
                 }
             },
         },
@@ -71,7 +71,7 @@
 </script>
 
 <style lang="scss">
-    .lv-page {
+    .pl-page {
         box-sizing: border-box;
         position: fixed;
         top: 0;
@@ -85,7 +85,7 @@
 
         background-color: white;
         @include transition-all-cubic-bezier;
-        &.lv-page-touching {
+        &.pl-page-touching {
             transition: unset;
         }
     }

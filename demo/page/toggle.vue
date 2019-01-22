@@ -24,7 +24,7 @@
 
 <style lang="scss">
     .demo-toggle {
-        .lv-toggle {
+        .pl-toggle {
             margin-right: 12px;
         }
     }

@@ -1,6 +1,6 @@
 <template>
-    <div class="lv-loading" :style="styles">
-        <img :src="src" class="lv-loading-img"/>
+    <div class="pl-loading" :style="styles">
+        <img :src="src" class="pl-loading-img"/>
     </div>
 </template>
 
@@ -8,7 +8,7 @@
     import svgs from './index'
 
     export default {
-        name: "lv-loading",
+        name: "pl-loading",
         props: {
             type: {type: String, default: 'spinner2'},
             size: {type: Number | String, default: '56px'},
@@ -31,10 +31,10 @@
 </script>
 
 <style lang="scss">
-    .lv-loading {
+    .pl-loading {
         display: inline-block;
         vertical-align: center;
-        img.lv-loading-img {
+        img.pl-loading-img {
             height: 100%;
             width: 100%;
             display: block;

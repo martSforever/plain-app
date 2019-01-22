@@ -10,7 +10,7 @@ const PlApp = {
     $dom,
     install(Vue, {prefix = 'lv', allPages, iconfont} = {}) {
         Object.keys(components).forEach(key => Vue.component(`${prefix}-${$utils.getKebabCase(key)}`, components[key]))
-        $utils.addScript('https://at.alicdn.com/t/font_948159_kzmnpxbcbzd.js')
+        $utils.addScript('https://at.alicdn.com/t/font_948159_ukep6sz7tw8.js')
         !!iconfont && $utils.addScript(iconfont)
         this.$plstore = this.$plstore = new PlStore(Vue, {name: '$plstore', ...navState,});
         Vue.prototype.$nav = new Nav(this.$plstore, allPages);

@@ -1,17 +1,17 @@
 <template>
-    <div class="lv-footer">
+    <div class="pl-footer">
         <slot></slot>
     </div>
 </template>
 
 <script>
     export default {
-        name: "lv-footer"
+        name: "pl-footer"
     }
 </script>
 
 <style lang="scss">
-    .lv-footer {
+    .pl-footer {
         height: 56px;
         display: flex;
         align-items: center;

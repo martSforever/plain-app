@@ -1,26 +1,26 @@
 <template>
-    <div class="lv-list">
+    <div class="pl-list">
         <slot></slot>
     </div>
 </template>
 
 <script>
     export default {
-        name: "lv-list"
+        name: "pl-list"
     }
 </script>
 
 <style lang="scss">
-    .lv-list {
+    .pl-list {
         flex: 1;
         width: 100%;
         box-sizing: border-box;
-        .lv-item:first-child {
+        .pl-item:first-child {
             border-top: $border;
         }
-        .lv-item:last-child {
+        .pl-item:last-child {
             border-bottom: $border;
-            .lv-item-content {
+            .pl-item-content {
                 border-bottom: unset
             }
         }

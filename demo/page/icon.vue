@@ -8,7 +8,7 @@
             <link-list>
                 <link-item>
                     Standard icon:
-                    <link-icon icon="lv-plus"/>
+                    <link-icon icon="pl-plus"/>
                 </link-item>
                 <link-item>
                     Costume icon:

@@ -1,12 +1,12 @@
 <template>
-    <div class="lv-header">
-        <div class="lv-header-left">
+    <div class="pl-header">
+        <div class="pl-header-left">
             <slot name="start"></slot>
         </div>
-        <div class="lv-header-center">
+        <div class="pl-header-center">
             <slot></slot>
         </div>
-        <div class="lv-header-right">
+        <div class="pl-header-right">
             <slot name="end"></slot>
         </div>
     </div>
@@ -14,12 +14,12 @@
 
 <script>
     export default {
-        name: "lv-header"
+        name: "pl-header"
     }
 </script>
 
 <style lang="scss">
-    .lv-header {
+    .pl-header {
         height: 64px;
         display: flex;
         align-items: center;
@@ -28,10 +28,10 @@
         color: $color-normal-title;
         padding: 0 $padding/2;
         box-sizing: border-box;
-        .lv-header-left, .lv-header-right {
+        .pl-header-left, .pl-header-right {
             flex: 1;
         }
-        .lv-header-center {
+        .pl-header-center {
             display: flex;
             flex: 1;
             align-items: center;

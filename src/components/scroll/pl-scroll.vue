@@ -1,28 +1,28 @@
 <template>
-    <div class="lv-scroll" ref="wrapper" :class="classes">
-        <div class="lv-scroll-content" v-resize-detector="handleResize">
+    <div class="pl-scroll" ref="wrapper" :class="classes">
+        <div class="pl-scroll-content" v-resize-detector="handleResize">
             <slot></slot>
         </div>
-        <div class="lv-scroll-drop-ready">
+        <div class="pl-scroll-drop-ready">
             <span>下拉刷新</span>
             &nbsp;&nbsp;
-            <link-icon icon="lv-arrow-down-flat"/>
+            <link-icon icon="pl-arrow-down-flat"/>
         </div>
-        <div class="lv-scroll-drop-doing">
-            <div class="lv-scroll-loading-content">
+        <div class="pl-scroll-drop-doing">
+            <div class="pl-scroll-loading-content">
                 <span>正在刷新</span>
-                <lv-loading size="32px"/>
+                <pl-loading size="32px"/>
             </div>
         </div>
-        <div class="lv-scroll-pull-ready">
+        <div class="pl-scroll-pull-ready">
             <span>上拉加载更多数据</span>
             &nbsp;&nbsp;
-            <link-icon icon="lv-arrow-up-flat"/>
+            <link-icon icon="pl-arrow-up-flat"/>
         </div>
-        <div class="lv-scroll-pull-doing">
-            <div class="lv-scroll-loading-content">
+        <div class="pl-scroll-pull-doing">
+            <div class="pl-scroll-loading-content">
                 <span>正在加载更多数据</span>
-                <lv-loading size="32px"/>
+                <pl-loading size="32px"/>
             </div>
         </div>
     </div>
@@ -32,12 +32,12 @@
 
     import BScroll from 'better-scroll'
     import ResizeDetector from 'src/utils/resize-detector'
-    import LvLoading from 'src/components/loading/lv-loading'
+    import PlLoading from 'src/components/loading/pl-loading'
 
     export default {
-        name: "lv-scroll",
+        name: "pl-scroll",
         directives: {ResizeDetector},
-        components: {LvLoading},
+        components: {PlLoading},
         props: {
             /**
              * 1 滚动的时候会派发scroll事件，会截流。
@@ -70,11 +70,11 @@
         computed: {
             classes() {
                 return {
-                    'lv-scroll-drop-ready': this.dropReady,
-                    // 'lv-scroll-drop-doing': true,
-                    'lv-scroll-drop-doing': this.dropDoing,
-                    'lv-scroll-pull-ready': this.pullReady,
-                    'lv-scroll-pull-doing': this.pullDoing,
+                    'pl-scroll-drop-ready': this.dropReady,
+                    // 'pl-scroll-drop-doing': true,
+                    'pl-scroll-drop-doing': this.dropDoing,
+                    'pl-scroll-pull-ready': this.pullReady,
+                    'pl-scroll-pull-doing': this.pullDoing,
                 }
             },
         },
@@ -141,12 +141,12 @@
 </script>
 
 <style lang="scss">
-    .lv-scroll {
+    .pl-scroll {
         height: 100%;
         width: 100%;
         overflow: hidden;
         position: relative;
-        .lv-scroll-drop-ready, .lv-scroll-drop-doing, .lv-scroll-pull-ready, .lv-scroll-pull-doing {
+        .pl-scroll-drop-ready, .pl-scroll-drop-doing, .pl-scroll-pull-ready, .pl-scroll-pull-doing {
             position: absolute;
             left: 0;
             right: 0;
@@ -159,29 +159,29 @@
             z-index: -1;
             @include transition-all;
 
-            .lv-icon {
+            .pl-icon {
                 font-size: 20px;
                 position: relative;
                 top: 2px;
             }
         }
-        .lv-scroll-loading-content {
+        .pl-scroll-loading-content {
             display: flex;
             flex-direction: row;
             align-items: center;
             justify-content: center;
         }
-        .lv-scroll-drop-ready, .lv-scroll-drop-doing {
+        .pl-scroll-drop-ready, .pl-scroll-drop-doing {
             top: 0
         }
-        .lv-scroll-pull-ready, .lv-scroll-pull-doing {
+        .pl-scroll-pull-ready, .pl-scroll-pull-doing {
             bottom: 0;
         }
 
-        &.lv-scroll-drop-ready .lv-scroll-drop-ready,
-        &.lv-scroll-drop-doing .lv-scroll-drop-doing,
-        &.lv-scroll-pull-ready .lv-scroll-pull-ready,
-        &.lv-scroll-pull-doing .lv-scroll-pull-doing {
+        &.pl-scroll-drop-ready .pl-scroll-drop-ready,
+        &.pl-scroll-drop-doing .pl-scroll-drop-doing,
+        &.pl-scroll-pull-ready .pl-scroll-pull-ready,
+        &.pl-scroll-pull-doing .pl-scroll-pull-doing {
             opacity: 1;
             z-index: 1;
         }
