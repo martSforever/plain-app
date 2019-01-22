@@ -1,4 +1,4 @@
-# plain-app
+# lv-app
 
 ## Project setup
 ```

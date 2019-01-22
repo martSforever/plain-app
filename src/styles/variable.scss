@@ -1,0 +1,55 @@
+/*
+*   power by    weishengjian
+*   datetime    2018/9/11 22:55
+*/
+
+/*@formatter:off*/
+
+/*---------------------------------------color-------------------------------------------*/
+$color-primary:#3656A5;                         //主色调
+$color-primary-light:#859BD2;                   //主色调：轻
+$color-primary-dark:#122B6B;                    //主色调：重
+
+$color-info:#646770;                            //提示
+$color-success:#31C431;                         //成功
+$color-warn:#F5D53D;                            //警告
+$color-error:#F53D3D;                           //失败
+
+$color-normal-title:#17233d;                    //标题
+$color-normal-content:#515a6e;                  //内容
+$color-normal-sub-color:#808695;                //辅助（图标）
+$color-normal-disabled:#c5c8ce;                 //失效
+$color-normal-border:#dcdee2;                   //边框
+$color-normal-divider:#e8eaec;                  //分割线
+$color-normal-background:#f8f8f9;               //背景色
+$color-normal-light:#f2f2f2;
+
+$list-color:(
+    primary:$color-primary,
+    info:$color-info,
+    success:$color-success,
+    warn:$color-warn,
+    error:$color-error,
+);
+
+/*---------------------------------------shape-------------------------------------------*/
+$shape-fillet:4px;
+$shape-round:3000px;
+$shape-none:0;
+
+$list-shape:(
+    fillet:$shape-fillet,
+    round:$shape-round,
+    none:$shape-none,
+);
+
+
+$animation-loop-time:1.5s;                      //css动画循环时长
+$transition-time:0.15s;                         //transition过渡动画时长
+$padding:20px;                                  //默认padding大小
+$margin:20px;                                   //默认margin大小
+$border-size:1px;                               //默认border大小
+$box-shadow: 0 0 10px $color-normal-border;
+$border:solid $border-size $color-normal-light;
+
+/*@formatter:on*/

@@ -1,0 +1,7 @@
+@mixin transition-all {
+  transition: all $transition-time;
+}
+
+@mixin transition-all-cubic-bezier {
+  transition: all 1s cubic-bezier(.28, 1.03, 0, .99);
+}
