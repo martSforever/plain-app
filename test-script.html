@@ -10,9 +10,9 @@
 <script src="./dist/pl-app.umd.min.js"></script>
 <div id="app"></div>
 <script type="text/javascript">
-    Vue.use(PlApp)
+    Vue.use(PlApp, {prefix:'pl'})
     new Vue({
-        template: '<h1>hello world {{name}}  <pl-icon icon="pl-like"></pl-icon> </h1>',
+        template: '<h1>hello world {{name}}  <pl-icon icon="pl-plus"></pl-icon> </h1>',
         data: function () {
             return {
                 name: 'martsforever '

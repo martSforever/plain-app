@@ -1,6 +1,25 @@
 {
   "name": "pl-app",
   "version": "0.1.0",
+  "title": "plain-app",
+  "description": "A app components Library based on Vue.js",
+  "keywords": [
+    "vue",
+    "vue.js",
+    "component",
+    "components",
+    "ui",
+    "framework"
+  ],
+  "main": "dist/pl-app.umd.min.js",
+  "files": [
+    "dist"
+  ],
+  "author": "martsforever",
+  "license": "MIT",
+  "peerDependencies": {
+    "vue": "^2.5.17"
+  },
   "scripts": {
     "start": "npm run serve",
     "serve": "vue-cli-service serve",
@@ -9,8 +28,7 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "better-scroll": "^1.13.2",
-    "vue": "^2.5.17"
+    "better-scroll": "^1.13.2"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.2.0",
