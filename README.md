@@ -1,29 +1,19 @@
-# pl-app
+## plain-app
 
-## Project setup
-```
-npm install
-```
+[See online demo on coding](http://193.112.75.134/plain-app)
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+[See online demo on my server](http://martsforever.coding.me/plain-app/page/demo.html)
 
-### Compiles and minifies for production
+## Install
 ```
-npm run build
+npm i plain-app -S
 ```
 
-### Run your tests
+## Quick Start
 ```
-npm run test
-```
+import Vue from 'vue'
+import PlainApp from 'plain-app/dist/plain-app.umd.min'
+import 'plain-app/dist/plain-app.css'
 
-### Lints and fixes files
+Vue.use(PlainApp)
 ```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
