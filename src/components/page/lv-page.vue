@@ -28,7 +28,7 @@
         },
         beforeDestroy() {
             !!this.name && console.log(this.name + '-->>destroyed');
-            if (this.$plapp.$lvstore.state.pageStack.length === 1) return
+            if (this.$plapp.$plstore.state.pageStack.length === 1) return
             this.$refs.page.removeEventListener('touchstart', this.touchstart)
             this.$refs.page.removeEventListener('touchmove', this.touchmove)
             this.$refs.page.removeEventListener('touchend', this.touchend)
@@ -47,7 +47,7 @@
         },
         methods: {
             touchstart(e) {
-                if (this.$plapp.$lvstore.state.pageStack.length === 1 || e.touches[0].clientX > 50) return
+                if (this.$plapp.$plstore.state.pageStack.length === 1 || e.touches[0].clientX > 50) return
                 e.stopPropagation()
                 this.touch.initialized = true;
                 this.touch.startX = e.touches[0].pageX;
