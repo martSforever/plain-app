@@ -1,7 +1,7 @@
 <template>
-    <transition-group :name="'lv-'+$lvapp.$lvstore.state.animate">
+    <transition-group :name="'lv-'+$plapp.$lvstore.state.animate">
         <component :is="page.component"
-                   v-for="(page,index) in $lvapp.$lvstore.state.pageStack"
+                   v-for="(page,index) in $plapp.$lvstore.state.pageStack"
                    :key="page.name+index"
                    v-if="page.initialized"
                    :param="page.param"

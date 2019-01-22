@@ -14,7 +14,7 @@ const LvApp = {
         !!iconfont && $utils.addScript(iconfont)
         this.$lvstore = this.$lvstore = new LvStore(Vue, {name: '$lvstore', ...navState,});
         Vue.prototype.$nav = new Nav(this.$lvstore, allPages);
-        Vue.prototype.$lvapp = LvApp
+        Vue.prototype.$plapp = LvApp
     },
 }
 
