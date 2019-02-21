@@ -9,6 +9,7 @@ const pages = {
     loading: resolve => require(['demo/page/loading'], resolve),
     toggle: resolve => require(['demo/page/toggle'], resolve),
     picker: resolve => require(['demo/page/picker'], resolve),
+    navigator: resolve => require(['demo/page/navigator'], resolve),
 };
 
 export default Object.keys(pages).map(name => {

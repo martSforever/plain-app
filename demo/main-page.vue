@@ -26,6 +26,7 @@
         data() {
             return {
                 demo: [
+                    {icon: 'pl-tab', path: 'navigator', label: 'navigator'},
                     {icon: 'icon-nav', path: 'nav1', label: 'nav'},
                     {icon: 'icon-icon', path: 'icon', label: 'icon'},
                     {icon: 'icon-ioslist', path: 'list', label: 'list'},
