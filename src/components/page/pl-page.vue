@@ -25,6 +25,9 @@
 
 <style lang="scss">
     .pl-page {
-
+        @include public-style;
+        background-color: white;
+        height: 100%;
+        width: 100%;
     }
 </style>

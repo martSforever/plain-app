@@ -5,3 +5,15 @@
 @mixin transition-all-cubic-bezier {
   transition: all 1s cubic-bezier(.28, 1.03, 0, .99);
 }
+
+@mixin public-style {
+  color: $color-normal-content;
+  margin: 0;
+  padding: 0;
+  letter-spacing: 0.5px;
+  font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+  font-size: 14px;
+  box-sizing: border-box;
+  vertical-align: middle;
+  font-weight: 400;
+}

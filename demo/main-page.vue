@@ -1,7 +1,7 @@
 <template>
     <div class="main-page">
         <link-page>
-            <link-header/>
+            <link-header title="主页面"/>
             main-page
         </link-page>
     </div>
@@ -37,7 +37,7 @@
     .main-page {
         height: 100%;
         width: 100%;
-
+        background-color: #f2f2f2;
         .pl-item {
             .icon {
                 margin-right: 12px;

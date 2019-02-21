@@ -1,7 +1,17 @@
 <template>
     <div class="pl-header">
         <div class="pl-header-content-wrapper">
-            <pl-back-button/>
+            <div class="pl-header-left">
+                <slot name="left">
+                    <pl-back-button/>
+                </slot>
+            </div>
+            <div class="pl-header-center">
+                <slot name="center"><span>{{title}}</span></slot>
+            </div>
+            <div class="pl-header-right">
+                <slot name="right"></slot>
+            </div>
         </div>
     </div>
 </template>
@@ -11,7 +21,10 @@
 
     export default {
         name: "pl-header",
-        components: {PlBackButton}
+        components: {PlBackButton},
+        props: {
+            title: {},
+        },
     }
 </script>
 
@@ -29,6 +42,17 @@
             align-items: center;
             padding: 0 6px;
             background-color: white;
+            .pl-header-left, .pl-header-right {
+                flex: 1;
+                font-size: 14px;
+            }
+            .pl-header-center {
+                display: flex;
+                flex: 1;
+                align-items: center;
+                justify-content: center;
+                min-width: 50%;
+            }
         }
         &::after {
             content: '';
@@ -37,7 +61,7 @@
             left: 0;
             right: 0;
             height: 1px;
-            box-shadow: 0 0 15px 1px #aaa;
+            box-shadow: 0 0 15px 1px #ddd;
         }
     }
 </style>
