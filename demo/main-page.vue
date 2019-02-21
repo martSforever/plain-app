@@ -1,23 +1,10 @@
 <template>
-    <link-page class="main-page" name="main">
-        <link-header>
-            <link-back-button slot="start"/>
-            AMobile
-        </link-header>
-        <link-content>
-            <link-list>
-                <link-item arrow v-for="(item,index) in demo"
-                           :key="index"
-                           @click="jump(item)">
-                    <div>
-                        <link-icon :icon="item.icon" class="icon"/>
-                        <span>{{item.label}}</span>
-                    </div>
-                </link-item>
-            </link-list>
-        </link-content>
-        <link-footer>FOOTER</link-footer>
-    </link-page>
+    <div class="main-page">
+        <link-page>
+            <link-header/>
+            main-page
+        </link-page>
+    </div>
 </template>
 
 <script>
@@ -48,6 +35,9 @@
 
 <style lang="scss">
     .main-page {
+        height: 100%;
+        width: 100%;
+
         .pl-item {
             .icon {
                 margin-right: 12px;

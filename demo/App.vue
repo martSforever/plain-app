@@ -1,14 +1,19 @@
 <template>
-    <link-app/>
+    <main-page/>
 </template>
 
 <script>
+    import MainPage from "./main-page";
+
     export default {
         name: "App",
+        components: {MainPage},
     }
 </script>
 
 <style lang="scss">
-    .app {
+    html, body {
+        padding: 0;
+        margin: 0;
     }
 </style>
