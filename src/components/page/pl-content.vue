@@ -1,5 +1,8 @@
 <template>
-    <div class="pl-content">
+    <div class="pl-content" :style="styles">
+        <div>
+            [{{pageLeft}}]
+        </div>
         <slot></slot>
     </div>
 </template>
@@ -11,16 +14,31 @@
         data() {
             return {
                 page: null,
+                pageLeft: null,
             }
         },
         mounted() {
             this.page = this.$plain.$dom.findComponentUpward(this, 'pl-page')
+            this.page.$on('move', (left) => {
+                this.pageLeft = left
+            })
         },
-        computed: {},
+        computed: {
+            styles() {
+                return {
+                    left: `${this.pageLeft}px`
+                }
+            },
+        },
     }
 </script>
 
 <style lang="scss">
     .pl-content {
+        @include public-style;
+        position: relative;
+        background-color: white;
+        width: 100%;
+        flex: 1;
     }
 </style>

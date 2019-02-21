@@ -1,6 +1,6 @@
 <template>
     <div class="pl-header">
-        <div class="pl-header-content-wrapper">
+        <div class="pl-header-content-wrapper" :style="wrapperStyles">
             <div class="pl-header-left">
                 <slot name="left">
                     <pl-back-button/>
@@ -25,6 +25,27 @@
         props: {
             title: {},
         },
+        data() {
+            return {
+                totalWidth: window.screen.width,
+                page: null,
+                pageLeft: null,
+            }
+        },
+        mounted() {
+            this.page = this.$plain.$dom.findComponentUpward(this, 'pl-page')
+            this.page.$on('move', (left) => {
+                this.pageLeft = left
+            })
+        },
+        computed: {
+            wrapperStyles() {
+                return {
+                    left: `${this.pageLeft / 5}px`,
+                    opacity: 1 - ((this.pageLeft / this.totalWidth).toFixed(2) - 0)
+                }
+            },
+        },
     }
 </script>
 
@@ -33,6 +54,7 @@
         height: 64px;
         position: relative;
         z-index: 1;
+        background-color: white;
         .pl-header-content-wrapper {
             height: 100%;
             width: 100%;
@@ -41,6 +63,7 @@
             display: flex;
             align-items: center;
             padding: 0 6px;
+            box-sizing: border-box;
             background-color: white;
             .pl-header-left, .pl-header-right {
                 flex: 1;
