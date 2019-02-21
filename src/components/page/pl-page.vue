@@ -18,8 +18,12 @@
         beforeDestroy() {
             !!this.name && console.log(this.name + '-->>destroyed');
         },
-        computed: {},
-        methods: {},
+        computed: {
+
+        },
+        methods: {
+
+        },
     }
 </script>
 

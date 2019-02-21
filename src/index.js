@@ -5,7 +5,7 @@ import {Nav, navState} from "./utils/nav";
 import components from './components'
 import './styles/index.scss'
 
-const PlApp = {
+const PlainApp = {
     $utils,
     $dom,
     install(Vue, {prefix = 'lv', allPages, iconfont} = {}) {
@@ -14,10 +14,10 @@ const PlApp = {
         !!iconfont && $utils.addScript(iconfont)
         this.$plstore = this.$plstore = new PlStore(Vue, {name: '$plstore', ...navState,});
         Vue.prototype.$nav = new Nav(this.$plstore, allPages);
-        Vue.prototype.$plapp = PlApp
+        Vue.prototype.$plain = PlainApp
     },
 }
 
-window.PlApp = PlApp;
+window.PlainApp = PlainApp;
 
-export default PlApp
+export default PlainApp

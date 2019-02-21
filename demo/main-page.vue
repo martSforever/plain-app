@@ -2,7 +2,9 @@
     <div class="main-page">
         <link-page>
             <link-header title="主页面"/>
-            main-page
+            <link-content>
+                this is main page
+            </link-content>
         </link-page>
     </div>
 </template>

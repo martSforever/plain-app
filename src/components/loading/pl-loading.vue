@@ -21,8 +21,8 @@
             styles() {
                 const styles = {}
                 !!this.size && Object.assign(styles, {
-                    width: this.$plapp.$utils.typeOf(this.size) === 'string' ? this.size : `${this.size}px`,
-                    height: this.$plapp.$utils.typeOf(this.size) === 'string' ? this.size : `${this.size}px`,
+                    width: this.$plain.$utils.typeOf(this.size) === 'string' ? this.size : `${this.size}px`,
+                    height: this.$plain.$utils.typeOf(this.size) === 'string' ? this.size : `${this.size}px`,
                 })
                 return styles
             },

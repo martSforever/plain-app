@@ -1,5 +1,6 @@
 <template>
-    <div class="pl-content" :class="classes">
+    <div class="pl-content">
+        <slot></slot>
     </div>
 </template>
 
@@ -7,6 +8,14 @@
     export default {
         name: "pl-content",
         props: {},
+        data() {
+            return {
+                page: null,
+            }
+        },
+        mounted() {
+            this.page = this.$plain.$dom.findComponentUpward(this, 'pl-page')
+        },
         computed: {},
     }
 </script>
