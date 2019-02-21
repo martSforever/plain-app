@@ -1,5 +1,5 @@
 <template>
-    <div class="pl-page" @touchstart="touchstart">
+    <div class="pl-page" @touchstart.stop.prevent="touchstart" @touchmove.stop.prevent="touchmove" @touchend.stop.prevent="touchend">
         <slot></slot>
     </div>
 </template>
@@ -31,24 +31,14 @@
         computed: {},
         methods: {
             touchstart(e) {
-                e.stopPropagation()
-                e.preventDefault()
-                document.body.addEventListener('touchmove', this.touchmove)
-                document.body.addEventListener('touchend', this.touchend)
                 this.tempLeft = this.left
                 this.startX = e.touches[0].clientX
             },
             touchmove(e) {
-                e.stopPropagation()
-                e.preventDefault()
                 const durX = e.touches[0].clientX - this.startX
                 this.left = Math.max(0, Math.min(durX + this.tempLeft, this.totalWidth))
             },
             touchend(e) {
-                e.stopPropagation()
-                e.preventDefault()
-                document.body.removeEventListener('touchmove', this.touchmove)
-                document.body.removeEventListener('touchend', this.touchend)
             },
         },
     }
