@@ -28,6 +28,7 @@
             display: flex;
             align-items: center;
             padding: 0 6px;
+            background-color: white;
         }
         &::after {
             content: '';
