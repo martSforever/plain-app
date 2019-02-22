@@ -1,7 +1,6 @@
 <template>
     <div class="main-page">
-        <link-navigator ref="navigator"
-                        :root="root"/>
+        <link-navigator ref="navigator" :root="root"/>
     </div>
 </template>
 
@@ -14,6 +13,7 @@
             return {
                 root: {
                     path: '/demo-main',
+                    param: {},
                 },
             }
         },
