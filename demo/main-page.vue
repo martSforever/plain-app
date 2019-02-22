@@ -1,6 +1,6 @@
 <template>
     <div class="main-page">
-        <link-navigator ref="navigator" :root="root"/>
+        <link-navigator ref="navigator" :root="root" id="root-navigator"/>
     </div>
 </template>
 

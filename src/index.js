@@ -1,5 +1,7 @@
 import $utils from './utils/utils'
 import $dom from './utils/dom'
+import $storage from './utils/storage'
+
 import PlStore from './utils/store'
 import {Nav, navState} from "./utils/nav";
 import components from './components'
@@ -8,6 +10,7 @@ import './styles/index.scss'
 const PlainApp = {
     $utils,
     $dom,
+    $storage,
     _pageRegistry: null,
     async pageRegistry(path) {
         if (!this._pageRegistry) {

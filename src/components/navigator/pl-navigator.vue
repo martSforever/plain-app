@@ -10,19 +10,34 @@
 </template>
 
 <script>
+
+    const STORAGE_KEY = 'navigator'
+
     export default {
         name: "pl-navigator",
         props: {
             root: {},
+            id: {},
         },
         data() {
-            const pageStack = []
+            let pageStack = []
+            let tabsStorage, selfStorage;
+            if (!!this.id) {
+                tabsStorage = this.$plain.$storage.get(STORAGE_KEY) || {}
+                selfStorage = tabsStorage[this.id] || {}
+                if (!!selfStorage.pageStack && selfStorage.pageStack.length > 0) {
+                    pageStack = selfStorage.pageStack.map((item) => Object.assign({id: this.$plain.$utils.uuid()}, item))
+                }
+            }
+            console.log(pageStack)
             return {
-                pageStack
+                pageStack,
+                tabsStorage,
+                selfStorage,
             }
         },
         mounted() {
-            !!this.root && this.push(this.root.path, this.root.param)
+            this.pageStack.length === 0 && !!this.root && this.push(this.root.path, this.root.param)
         },
         methods: {
             async push(path, param) {
@@ -33,6 +48,7 @@
                     param,
                     component
                 })
+                this.p_save()
             },
             async back() {
                 if (this.pageStack.length === 1) {
@@ -49,6 +65,16 @@
                 await page.hide()
                 const pageInfo = this.pageStack.pop()
                 return {pageInfo, pageInstance}
+            },
+            p_save() {
+                if (!this.id) return
+                this.selfStorage.pageStack = this.pageStack.map(({path, param}) => ({path, param}))
+                this.tabsStorage[this.id] = this.selfStorage
+                this.$plain.$storage.set(STORAGE_KEY, this.tabsStorage)
+                console.log(this.tabsStorage)
+            },
+            p_initComponent() {
+
             },
         }
     }
