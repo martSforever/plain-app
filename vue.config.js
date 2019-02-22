@@ -5,6 +5,9 @@ module.exports = {
     baseUrl: './',
     lintOnSave: false,
     outputDir: resolve('page'),
+    devServer: {
+        port: '8889',
+    },
     pages: {
         index: {
             // page 的入口
