@@ -34,6 +34,7 @@
         },
         mounted() {
             this.page = this.$plain.$dom.findComponentUpward(this, 'pl-page')
+            this.pageLeft = this.page.left
             this.page.$on('move', (left) => {
                 this.pageLeft = left
             })
@@ -65,6 +66,7 @@
             padding: 0 6px;
             box-sizing: border-box;
             background-color: white;
+            @include transition-all-cubic-bezier;
             .pl-header-left, .pl-header-right {
                 flex: 1;
                 font-size: 14px;

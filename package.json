@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "better-scroll": "^1.13.2",
+    "fecha": "^3.0.2",
     "vue": "^2.5.17"
   },
   "devDependencies": {

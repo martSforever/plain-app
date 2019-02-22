@@ -1,3 +1,6 @@
+import fecha from 'fecha'
+import keyboard from './keyboard'
+
 const SPECIAL_CHARS_REGEXP = /([:\-_]+(.))/g;
 const MOZ_HACK_REGEXP = /^moz([A-Z])/;
 
@@ -61,46 +64,6 @@ function delay(duration = 100) {
 }
 
 /**
- * 日期格式化
- * @author 韦胜健
- * @date 2018/11/19
- */
-function dateFormat(date, format) {
-    if (!date) return null
-    let o = {
-        "M+": date.getMonth() + 1, //月份
-        "d+": date.getDate(), //日
-        "h+": date.getHours() % 12 === 0 ? 12 : date.getHours() % 12, //小时
-        "H+": date.getHours(), //小时
-        "m+": date.getMinutes(), //分
-        "s+": date.getSeconds(), //秒
-        "q+": Math.floor((date.getMonth() + 3) / 3), //季度
-        "S": date.getMilliseconds() //毫秒
-    };
-    let week = {
-        "0": "\u65e5",
-        "1": "\u4e00",
-        "2": "\u4e8c",
-        "3": "\u4e09",
-        "4": "\u56db",
-        "5": "\u4e94",
-        "6": "\u516d"
-    };
-    if (/(y+)/.test(format)) {
-        format = format.replace(RegExp.$1, (date.getFullYear() + "").substr(4 - RegExp.$1.length));
-    }
-    if (/(E+)/.test(format)) {
-        format = format.replace(RegExp.$1, ((RegExp.$1.length > 1) ? (RegExp.$1.length > 2 ? "\u661f\u671f" : "\u5468") : "") + week[date.getDay() + ""]);
-    }
-    for (let k in o) {
-        if (new RegExp("(" + k + ")").test(format)) {
-            format = format.replace(RegExp.$1, (RegExp.$1.length === 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
-        }
-    }
-    return format;
-}
-
-/**
  * 从数组中删除
  * @author 韦胜健
  * @date 2018/11/19
@@ -158,29 +121,32 @@ function camelCase(name) {
 
 /**
  * 深度复制
- * @author 韦胜健
+ * @author weishengjian
  * @date 2018/11/19
  */
-function deepCopy(data) {
-    const t = typeOf(data);
+export function deepCopy(data) {
     let o;
-
-    if (t === 'array') {
-        o = [];
-    } else if (t === 'object') {
-        o = {};
-    } else {
-        return data;
-    }
-
-    if (t === 'array') {
-        for (let i = 0; i < data.length; i++) {
-            o.push(deepCopy(data[i]));
-        }
-    } else if (t === 'object') {
-        for (let i in data) {
-            o[i] = deepCopy(data[i]);
-        }
+    switch (typeOf(data)) {
+        case 'array':
+            o = data.map(item => deepCopy(item))
+            break
+        case 'object':
+            o = {}
+            Object.keys(data).forEach(key => o[key] = deepCopy(data[key]))
+            break
+        case 'date':
+            o = new Date()
+            o.setTime(data.getTime())
+            break
+        case 'regExp':
+            let pattern = data.valueOf();
+            let flags = '';
+            flags += pattern.global ? 'g' : '';
+            flags += pattern.ignoreCase ? 'i' : '';
+            flags += pattern.multiline ? 'm' : '';
+            return new RegExp(pattern.source, flags);
+        default:
+            o = data;
     }
     return o;
 }
@@ -229,6 +195,176 @@ function oneOf(val, array) {
     return false;
 }
 
+/**
+ * 格式化日期对象
+ * @author  韦胜健
+ * @date    2018/12/13 10:29
+ * @param date 将要格式化的日期
+ * @param format 格式化字符串
+ */
+function dateFormat(date, format) {
+    return fecha.format(date, format)
+}
+
+/**
+ * 解析字符串为日期对象
+ * @author  韦胜健
+ * @date    2018/12/13 10:30
+ * @param string 将要解析的字符串
+ * @param format 格式化字符串
+ */
+function dateParse(string, format) {
+    return fecha.parse(string, format)
+}
+
+/**
+ * 使用px单位化
+ * @author  韦胜健
+ * @date    2019/1/10 10:56
+ */
+function unit(data) {
+    const type = typeOf(data)
+    switch (type) {
+        case 'string':
+            return data;
+        case 'number':
+            return `${data}px`
+        default:
+            return null
+    }
+}
+
+/**
+ * 打乱数组
+ * @author  韦胜健
+ * @date    2019/1/10 10:56
+ */
+function shuffle(array) {
+    array = deepCopy(array)
+    let currentIndex = array.length;
+    let temporaryValue, randomIndex;
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+        // Pick a remaining element...
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+        // And swap it with the current element.
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
+    }
+    return array
+}
+
+/**
+ * 从数组中查找一个
+ * @author  韦胜健
+ * @date    2019/1/10 10:56
+ */
+function findOne(array, fn) {
+    for (let i = 0; i < array.length; i++) {
+        const item = array[i];
+        if (!!fn(item)) return item
+    }
+    return null
+}
+
+/**
+ * 从数组中查找多个
+ * @author  韦胜健
+ * @date    2019/1/10 10:57
+ */
+function findSome() {
+    const ret = []
+    for (let i = 0; i < array.length; i++) {
+        const item = array[i];
+        if (!!fn(item)) ret.push(item)
+    }
+    return ret
+}
+
+/**
+ * desc 手机号码格式化
+ * @author huyang
+ * @date 2018/12/11 13:43
+ * @params
+ */
+export function telFormat(d) {
+    if (d == null) return ''
+    d = String(d);
+    d = d.trim();
+    if (d.length >= 11) {
+        let d1 = d.substr(d.length - 4, 4);
+        let d2 = d.substr(d.length - 8, 4);
+        let d3 = d.substr(d.length - 11, 3);
+        return d3 + ' ' + d2 + ' ' + d1;
+    } else {
+        return d;
+    }
+}
+
+/**
+ * desc 金额格式化，并保留两位小数
+ * @author huyang
+ * @date 2018/12/11 13:45
+ * @params
+ */
+export function moneyFormat(val) {
+    if (val || val == 0) {
+        val = val.toString().replace(/\$|\, /g, '');
+        if (isNaN(val)) {
+            val = '0';
+        }
+        const sign = val == (val = Math.abs(val));
+        val = Math.floor(val * 100 + 0.50000000001);
+        let cents = val % 100;
+        val = Math.floor(val / 100).toString();
+        if (cents < 10) {
+            cents = '0' + cents;
+        }
+        for (let i = 0; i < Math.floor((val.length - (1 + i)) / 3); i++) {
+            val = val.substring(0, val.length - (4 * i + 3)) + ',' + val.substring(val.length - (4 * i + 3));
+        }
+        return (sign ? '' : '-') + val + '.' + cents;
+    }
+}
+
+/**
+ * desc 转化为人民币显示，并保留两位小数
+ * @author huyang
+ * @date 2018/12/11 13:47
+ * @params
+ */
+export function cnyFormat(d) {
+    // 转换为人民币显示
+    if (!d) {
+        return '￥0';
+    }
+    if (isNaN(d)) {
+        return '无效的金额';
+    }
+    let dd = parseFloat(d);
+    return '￥' + String(dd.toFixed(2)).replace(/\d{1,3}(?=(\d{3})+(\.\d*)?$)/g, '$&,');
+}
+
+/**
+ * desc 转化为百分比显示，并保留两位小数
+ * @author huyang
+ * @date 2018/12/11 13:47
+ * @params
+ */
+export function percentNumFormat(d) {
+    //转换为两位小数
+    if (d == null) {
+        return "";
+    }
+    if (isNaN(d)) {
+        return "";
+    }
+    return parseFloat(d).toFixed(4) * 100 + '%';
+}
+
+
 const $utils = {
     getKebabCase,                               //驼峰命名转横杠命名
     camelCase,                                  //转为驼峰命名
@@ -236,6 +372,7 @@ const $utils = {
     insertSort,                                 //插入排序
     delay,                                      //推迟时间
     dateFormat,                                 //日期格式化
+    dateParse,                                  //字符串格式化为日期
     removeFromArray,                            //从数组中删除
     uuid,                                       //获取唯一标识符
     zeroize,                                    //填充0字符
@@ -243,6 +380,15 @@ const $utils = {
     removePx,                                   //去掉px,返回数字
     typeOf,                                     //判断变量类型
     oneOf,                                      //判断是否存在于数组中
+    unit,                                       //填补单位，如果是字符串，则返回原数据，如果是数字则返回数字+px
+    shuffle,                                    //打乱数组顺序
+    findOne,                                    //从数组中查找一个
+    findSome,                                   //从数组中查找多个
+    telFormat,                                  //电话号码格式化
+    moneyFormat,                                //金额格式化
+    cnyFormat,                                  //人民币格式化
+    percentNumFormat,                           //百分比格式化
+    keyboard,
 }
 
 export default $utils
