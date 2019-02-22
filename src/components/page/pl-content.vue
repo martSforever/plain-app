@@ -1,9 +1,7 @@
 <template>
     <div class="pl-content" :style="styles">
-        <div>
-            [{{pageLeft}}]
-        </div>
         <slot></slot>
+
     </div>
 </template>
 

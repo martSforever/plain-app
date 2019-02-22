@@ -1,19 +1,26 @@
 <template>
-    <div class="main-page">
-        <link-navigator ref="navigator"
-                        :root="root"/>
-    </div>
+    <link-page class="demo-main-page">
+        <link-header title="demo示例"/>
+        <link-content>
+            <link-list>
+                <link-item v-for="(item,index) in demos"
+                           :key="index" arrow>
+                    <div>
+                        <link-icon :icon="item.icon"/>
+                        <span>{{item.label}}</span>
+                    </div>
+                </link-item>
+            </link-list>
+        </link-content>
+    </link-page>
 </template>
 
 <script>
     export default {
-        name: "main-page",
+        name: "demo-main-page",
         data() {
             return {
-                root: {
-                    path: '/demo-main',
-                },
-                demo: [
+                demos: [
                     {icon: 'pl-tab', path: 'navigator', label: 'navigator'},
                     {icon: 'icon-nav', path: 'nav1', label: 'nav'},
                     {icon: 'icon-icon', path: 'icon', label: 'icon'},
@@ -26,23 +33,9 @@
                 ]
             }
         },
-        methods: {
-            jump(item) {
-                this.$nav.push(item.path)
-            },
-        },
     }
 </script>
 
 <style lang="scss">
-    .main-page {
-        height: 100%;
-        width: 100%;
-        background-color: #f2f2f2;
-        .pl-item {
-            .icon {
-                margin-right: 12px;
-            }
-        }
-    }
+
 </style>

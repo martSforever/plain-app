@@ -11,7 +11,7 @@ Vue.use(PlainApp, {
     prefix: 'link',
     pageRegistry(path) {
         return new Promise((rs, rj) => {
-            import('demo/page' + path + '.vue')
+            import('demo/page' + path + '-page.vue')
                 .then(module => rs(module.default))
                 .catch(e => rj(e))
         })

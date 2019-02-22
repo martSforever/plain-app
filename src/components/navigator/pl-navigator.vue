@@ -14,18 +14,23 @@
 <script>
     export default {
         name: "pl-navigator",
+        props: {
+            root: {},
+        },
         data() {
             const pageStack = []
             return {
                 pageStack
             }
         },
+        mounted() {
+            !!this.root && this.push(this.root.path, this.root.param)
+        },
         methods: {
-            async push(path, title, param) {
+            async push(path, param) {
                 const component = await this.$plain.pageRegistry(path)
                 this.pageStack.push({
                     id: this.$plain.$utils.uuid(),
-                    title: title,
                     path,
                     param,
                     component
