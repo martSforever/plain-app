@@ -6,6 +6,8 @@
 </template>
 
 <script>
+    import Vue from 'vue'
+
     export default {
         name: "main-page",
         data() {
@@ -13,23 +15,10 @@
                 root: {
                     path: '/demo-main',
                 },
-                demo: [
-                    {icon: 'pl-tab', path: 'navigator', label: 'navigator'},
-                    {icon: 'icon-nav', path: 'nav1', label: 'nav'},
-                    {icon: 'icon-icon', path: 'icon', label: 'icon'},
-                    {icon: 'icon-ioslist', path: 'list', label: 'list'},
-                    {icon: 'icon-youtubeplay', path: 'button', label: 'button'},
-                    {icon: 'icon-scroll', path: 'scroll', label: 'scroll'},
-                    {icon: 'icon-loading', path: 'loading', label: 'loading'},
-                    {icon: 'pl-switch-on', path: 'toggle', label: 'toggle'},
-                    {icon: 'icon-boardsheet', path: 'picker', label: 'picker'},
-                ]
             }
         },
-        methods: {
-            jump(item) {
-                this.$nav.push(item.path)
-            },
+        mounted() {
+            this.$set(Vue.prototype, '$navigator', this.$refs.navigator)
         },
     }
 </script>

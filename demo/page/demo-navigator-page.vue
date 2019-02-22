@@ -9,7 +9,7 @@
 
 <script>
     export default {
-        name: "demo-navigator"
+        name: "demo-navigator-page"
     }
 </script>
 

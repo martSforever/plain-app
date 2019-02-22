@@ -21,7 +21,6 @@
         },
         methods: {
             handleClick() {
-                console.log('handleClick')
                 this.p_navigator.back()
             }
         },

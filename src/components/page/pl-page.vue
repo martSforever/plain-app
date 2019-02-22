@@ -21,6 +21,7 @@
                 tempLeft: 0,
                 startX: 0,
                 touching: false,
+                navigator: null,
             }
         },
         watch: {
@@ -29,10 +30,8 @@
             },
         },
         async mounted() {
-            await this.$plain.nextTick()
-            setTimeout(() => {
-                this.left = 0
-            }, 0)
+            this.navigator = this.$plain.$dom.findComponentUpward(this, 'pl-navigator')
+            this.show()
         },
         beforeDestroy() {
             !!this.name && console.log(this.name + '-->>destroyed');
@@ -40,6 +39,8 @@
         computed: {},
         methods: {
             async show() {
+                await this.$plain.nextTick()
+                await this.$plain.$utils.delay(25)
                 this.left = 0
                 await this.$plain.$utils.delay(1000)
                 this.$emit('show')
@@ -50,7 +51,7 @@
                 this.$emit('hide')
             },
             touchstart(e) {
-                if (e.touches[0].clientX > 50) return
+                if (e.touches[0].clientX > 50 || e.touches[0].clientY < 64) return
                 this.touching = true
                 this.tempLeft = this.left
                 this.startX = e.touches[0].clientX
@@ -64,7 +65,7 @@
                 if (!this.touching) return
                 this.touching = false
                 if (this.left > this.totalWidth * 0.6) {
-                    this.hide()
+                    this.navigator.back()
                 } else {
                     this.show()
                 }

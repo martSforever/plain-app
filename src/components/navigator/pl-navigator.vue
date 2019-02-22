@@ -1,13 +1,11 @@
 <template>
     <div class="pl-navigator">
-        <component v-for="(page,index) in pageStack"
+        <component :is="page.component"
                    ref="pages"
-                   class="pl-navigator-page-item"
+                   v-for="(page,index) in pageStack"
                    :key="page.id"
-                   :param="page.param || {}"
-                   :is="page.component"
-                   v-if="index===pageStack.length-1"
-                   v-show="index === pageStack.length-1"/>
+                   v-if="index>=pageStack.length-2"
+                   :param="page.param"/>
     </div>
 </template>
 
@@ -37,6 +35,11 @@
                 })
             },
             async back() {
+                if (this.pageStack.length === 1) {
+                    console.info("is last page!!!")
+                    return
+                }
+
                 let pageInstance = this.$refs.pages[this.$refs.pages.length - 1]
                 if (pageInstance.$children[0].$options.name !== 'pl-page') {
                     console.error('page must be wrapped by page component!!!')

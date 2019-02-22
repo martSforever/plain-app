@@ -4,7 +4,8 @@
         <link-content>
             <link-list>
                 <link-item v-for="(item,index) in demos"
-                           :key="index" arrow>
+                           :key="index" arrow
+                           @click="p_click(item)">
                     <div>
                         <link-icon :icon="item.icon"/>
                         <span>{{item.label}}</span>
@@ -21,7 +22,7 @@
         data() {
             return {
                 demos: [
-                    {icon: 'pl-tab', path: 'navigator', label: 'navigator'},
+                    {icon: 'pl-tab', path: '/demo-navigator', label: 'navigator'},
                     {icon: 'icon-nav', path: 'nav1', label: 'nav'},
                     {icon: 'icon-icon', path: 'icon', label: 'icon'},
                     {icon: 'icon-ioslist', path: 'list', label: 'list'},
@@ -33,6 +34,11 @@
                 ]
             }
         },
+        methods: {
+            p_click(item) {
+                this.$navigator.push(item.path)
+            },
+        }
     }
 </script>
 
