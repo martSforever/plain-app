@@ -1,11 +1,13 @@
 <template>
     <div class="pl-navigator">
         <component ref="pages"
-                   v-for="(page,index) in pageStack"
+                   v-for="(page) in pageStack"
                    :key="page.id"
+                   :id="page.id"
+                   :path="page.path"
                    :is="page.component"
-                   :param="page.param"
-                   v-if="!!page.component && index>=pageStack.length-2"/>
+                   :param="page.param || {}"
+                   v-if="page.initialized"/>
     </div>
 </template>
 
@@ -24,7 +26,11 @@
                 tabsStorage = this.$plain.$storage.get(STORAGE_KEY) || {}
                 selfStorage = tabsStorage[this.id] || {}
                 if (!!selfStorage.pageStack && selfStorage.pageStack.length > 0) {
-                    pageStack = selfStorage.pageStack.map((item) => Object.assign({id: this.$plain.$utils.uuid(), component: null}, item))
+                    pageStack = selfStorage.pageStack.map((item, index) => Object.assign({
+                        id: this.$plain.$utils.uuid(),
+                        component: null,
+                        initialized: index >= selfStorage.pageStack.length - 2
+                    }, item))
                 }
             }
             this.$nextTick(() => this.p_initComponent())
@@ -44,7 +50,8 @@
                     id: this.$plain.$utils.uuid(),
                     path,
                     param,
-                    component
+                    component,
+                    initialized: true,
                 })
                 await this.p_save()
                 this.$emit('push', {path, param})
@@ -54,17 +61,21 @@
                     console.info("is last page!!!")
                     return
                 }
-
-                let pageInstance = this.$refs.pages[this.$refs.pages.length - 1]
-                if (pageInstance.$children[0].$options.name !== 'pl-page') {
+                const lastPage = this.pageStack[this.pageStack.length - 1]
+                const {path, param} = lastPage;
+                let lastPageInstance = this.p_getPageInstance(lastPage)
+                if (lastPageInstance.$options.name !== 'pl-page') {
                     console.error('page must be wrapped by page component!!!')
                     return
                 }
-                let page = pageInstance.$children[0]
-                await page.hide()
-                const pageInfo = this.pageStack.pop()
-                this.$emit('back', {path: pageInfo.path, param: pageInfo.param})
-                return {pageInfo, pageInstance}
+                await lastPageInstance.hide()
+                this.pageStack.pop()
+                await this.p_save()
+                this.pageStack.forEach((page, index) => {
+                    !page.initialized && index >= this.pageStack.length - 2 && (page.initialized = true)
+                })
+                this.$emit('back', {path, param})
+                return {path, param}
             },
             async p_save() {
                 if (!this.id) return
@@ -76,6 +87,12 @@
                 for (let i = 0; i < this.pageStack.length; i++) {
                     const page = this.pageStack[i];
                     if (!page.component) page.component = await this.$plain.pageRegistry(page.path)
+                }
+            },
+            p_getPageInstance(page) {
+                for (let i = 0; i < this.$children.length; i++) {
+                    const $child = this.$children[i];
+                    if ($child.$attrs.id === page.id) return $child.$children[0]
                 }
             },
         }

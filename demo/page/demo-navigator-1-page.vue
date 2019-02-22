@@ -1,13 +1,12 @@
 <template>
-    <link-page name="demo-navigator-page">
-        <link-header title="页面导航"/>
-        <link-content padding>
-            页面导航示例
+    <link-page name="demo-navigator-1-page">
+        <link-header title="页面一"/>
+        <link-content>
             <div>
                 <input type="text" v-model="msg">
             </div>
             <div>
-                <link-button label="打开页面一" @click="$navigator.push('/demo-navigator-1',{msg})" long/>
+                <link-button label="打开页面二" @click="$navigator.push('/demo-navigator-2',{msg})" long/>
             </div>
         </link-content>
     </link-page>
@@ -15,7 +14,7 @@
 
 <script>
     export default {
-        name: "demo-navigator-page",
+        name: "demo-navigator-1-page",
         props: {
             param: {},
         },

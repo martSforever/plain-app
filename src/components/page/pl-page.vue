@@ -30,11 +30,12 @@
             },
         },
         async mounted() {
+            !!this.name && console.log(`mounted>>>${this.name}`)
             this.navigator = this.$plain.$dom.findComponentUpward(this, 'pl-navigator')
-            this.show()
+            await this.show()
         },
         beforeDestroy() {
-            !!this.name && console.log(this.name + '-->>destroyed');
+            !!this.name && console.log(`destroyed<<<${this.name}`);
         },
         computed: {},
         methods: {

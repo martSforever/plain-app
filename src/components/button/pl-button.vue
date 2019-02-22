@@ -1,6 +1,8 @@
 <template>
     <div class="pl-button" :class="classes" @click="e=>$emit('click',e)">
-        <slot></slot>
+        <slot>
+            {{label}}
+        </slot>
     </div>
 </template>
 
@@ -8,6 +10,7 @@
     export default {
         name: "pl-button",
         props: {
+            label: {type: String},
             type: {type: String, default: 'fill'},
             color: {type: String, default: 'primary'},
             shape: {type: String, default: 'fillet'},

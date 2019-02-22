@@ -1,5 +1,5 @@
 <template>
-    <link-page class="demo-main-page">
+    <link-page class="demo-main-page" name="demo-main-page">
         <link-header title="demo示例"/>
         <link-content>
             <link-list>

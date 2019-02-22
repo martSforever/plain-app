@@ -1,14 +1,15 @@
 <template>
-    <div class="pl-content" :style="styles">
+    <div class="pl-content" :style="styles" :class="{'pl-content-padding':padding}">
         <slot></slot>
-
     </div>
 </template>
 
 <script>
     export default {
         name: "pl-content",
-        props: {},
+        props: {
+            padding: {type: Boolean},
+        },
         data() {
             return {
                 page: null,
@@ -40,5 +41,8 @@
         background-color: white;
         width: 100%;
         flex: 1;
+        &.pl-content-padding {
+            padding: 20px;
+        }
     }
 </style>
