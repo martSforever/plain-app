@@ -1,9 +1,6 @@
 <template>
     <link-page name="button">
-        <link-header>
-            <link-back-button slot="start"/>
-            button
-        </link-header>
+        <link-header title="按钮"/>
         <link-content padding>
             <div class="button-wrapper">
                 <link-button color="primary">primary</link-button>

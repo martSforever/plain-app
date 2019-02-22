@@ -8,7 +8,16 @@ import './styles/index.scss'
 const PlainApp = {
     $utils,
     $dom,
-    install(Vue, {prefix = 'lv', allPages, iconfont} = {}) {
+    _pageRegistry: null,
+    async pageRegistry(path) {
+        if (!this._pageRegistry) {
+            return Promise.reject('plain need pageRegistry function when installed.')
+        } else {
+            return await this._pageRegistry(path)
+        }
+    },
+    install(Vue, {prefix = 'lv', allPages, iconfont, pageRegistry} = {}) {
+        this._pageRegistry = pageRegistry
         Object.keys(components).forEach(key => Vue.component(`${prefix}-${$utils.getKebabCase(key)}`, components[key]))
         $utils.addScript('https://at.alicdn.com/t/font_948159_ukep6sz7tw8.js')
         !!iconfont && $utils.addScript(iconfont)

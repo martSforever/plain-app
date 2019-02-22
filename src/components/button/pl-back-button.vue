@@ -11,9 +11,18 @@
     export default {
         name: "pl-back-button",
         components: {PlIcon},
+        data() {
+            return {
+                p_navigator: null,
+            }
+        },
+        mounted() {
+            this.p_navigator = this.$plain.$dom.findComponentUpward(this, 'pl-navigator')
+        },
         methods: {
             handleClick() {
-                this.$nav.pop()
+                console.log('handleClick')
+                this.p_navigator.back()
             }
         },
 

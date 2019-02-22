@@ -12,6 +12,7 @@ import scroll from './scroll/pl-scroll'
 import loading from './loading/pl-loading'
 import toggle from './toggle/pl-toggle'
 import picker from './picker/pl-picker'
+import navigator from './navigator/pl-navigator'
 
 
 const components = {
@@ -29,6 +30,7 @@ const components = {
     loading,
     toggle,
     picker,
+    navigator,
 }
 
 export default components

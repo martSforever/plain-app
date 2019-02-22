@@ -1,11 +1,6 @@
 <template>
     <div class="main-page">
-        <link-page>
-            <link-header title="主页面"/>
-            <link-content>
-                this is main page
-            </link-content>
-        </link-page>
+        <link-navigator ref="navigator"/>
     </div>
 </template>
 
@@ -31,7 +26,10 @@
             jump(item) {
                 this.$nav.push(item.path)
             },
-        }
+        },
+        mounted() {
+            this.$refs.navigator.push('/button', '按钮', {ddd: '按钮'})
+        },
     }
 </script>
 
