@@ -1,9 +1,9 @@
 <template>
     <div class="pl-page"
          :class="{'pl-page-touching':touching}"
-         @touchstart.stop.prevent="touchstart"
-         @touchmove.stop.prevent="touchmove"
-         @touchend.stop.prevent="touchend">
+         @touchstart="touchstart"
+         @touchmove="touchmove"
+         @touchend="touchend">
         <slot></slot>
     </div>
 </template>

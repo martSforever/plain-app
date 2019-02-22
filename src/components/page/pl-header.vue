@@ -1,5 +1,5 @@
 <template>
-    <div class="pl-header">
+    <div class="pl-header" :style="styles">
         <div class="pl-header-content-wrapper" :style="wrapperStyles">
             <div class="pl-header-left">
                 <slot name="left">
@@ -43,6 +43,10 @@
             wrapperStyles() {
                 return {
                     left: `${this.pageLeft / 5}px`,
+                }
+            },
+            styles() {
+                return {
                     opacity: 1 - ((this.pageLeft / this.totalWidth).toFixed(2) - 0)
                 }
             },
@@ -56,6 +60,7 @@
         position: relative;
         z-index: 1;
         background-color: white;
+        @include transition-all-cubic-bezier;
         .pl-header-content-wrapper {
             height: 100%;
             width: 100%;

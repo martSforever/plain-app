@@ -3,7 +3,7 @@
 }
 
 @mixin transition-all-cubic-bezier {
-  transition: all 1s cubic-bezier(.28, 1.03, 0, .99);
+  transition: all 1s cubic-bezier(.28, 1, 0, 1);
 }
 
 @mixin public-style {
