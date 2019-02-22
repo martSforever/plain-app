@@ -71,9 +71,7 @@
                 await lastPageInstance.hide()
                 this.pageStack.pop()
                 await this.p_save()
-                this.pageStack.forEach((page, index) => {
-                    !page.initialized && index >= this.pageStack.length - 2 && (page.initialized = true)
-                })
+                this.pageStack.forEach((page, index) => !page.initialized && index >= this.pageStack.length - 2 && (page.initialized = true))
                 this.$emit('back', {path, param})
                 return {path, param}
             },

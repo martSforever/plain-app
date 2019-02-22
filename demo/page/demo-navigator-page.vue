@@ -21,7 +21,7 @@
         },
         data() {
             return {
-                msg: this.param.msg,
+                msg: null,
             }
         },
     }
