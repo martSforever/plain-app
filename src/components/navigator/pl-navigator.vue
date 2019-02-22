@@ -1,18 +1,16 @@
 <template>
     <div class="pl-navigator">
-        <component :is="page.component"
-                   ref="pages"
+        <component ref="pages"
                    v-for="(page,index) in pageStack"
                    :key="page.id"
-                   v-if="index>=pageStack.length-2"
-                   :param="page.param"/>
+                   :is="page.component"
+                   :param="page.param"
+                   v-if="!!page.component && index>=pageStack.length-2"/>
     </div>
 </template>
 
 <script>
-
     const STORAGE_KEY = 'navigator'
-
     export default {
         name: "pl-navigator",
         props: {
@@ -26,10 +24,10 @@
                 tabsStorage = this.$plain.$storage.get(STORAGE_KEY) || {}
                 selfStorage = tabsStorage[this.id] || {}
                 if (!!selfStorage.pageStack && selfStorage.pageStack.length > 0) {
-                    pageStack = selfStorage.pageStack.map((item) => Object.assign({id: this.$plain.$utils.uuid()}, item))
+                    pageStack = selfStorage.pageStack.map((item) => Object.assign({id: this.$plain.$utils.uuid(), component: null}, item))
                 }
             }
-            console.log(pageStack)
+            this.$nextTick(() => this.p_initComponent())
             return {
                 pageStack,
                 tabsStorage,
@@ -48,7 +46,8 @@
                     param,
                     component
                 })
-                this.p_save()
+                await this.p_save()
+                this.$emit('push', {path, param})
             },
             async back() {
                 if (this.pageStack.length === 1) {
@@ -64,17 +63,20 @@
                 let page = pageInstance.$children[0]
                 await page.hide()
                 const pageInfo = this.pageStack.pop()
+                this.$emit('back', {path: pageInfo.path, param: pageInfo.param})
                 return {pageInfo, pageInstance}
             },
-            p_save() {
+            async p_save() {
                 if (!this.id) return
                 this.selfStorage.pageStack = this.pageStack.map(({path, param}) => ({path, param}))
                 this.tabsStorage[this.id] = this.selfStorage
                 this.$plain.$storage.set(STORAGE_KEY, this.tabsStorage)
-                console.log(this.tabsStorage)
             },
-            p_initComponent() {
-
+            async p_initComponent() {
+                for (let i = 0; i < this.pageStack.length; i++) {
+                    const page = this.pageStack[i];
+                    if (!page.component) page.component = await this.$plain.pageRegistry(page.path)
+                }
             },
         }
     }
