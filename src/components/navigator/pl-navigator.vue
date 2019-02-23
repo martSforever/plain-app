@@ -72,7 +72,20 @@
                 this.$emit('push', {path, param})
             },
             async redirect(path, param) {
-
+                const component = await this.$plain.pageRegistry(path)
+                this.pageStack.push({
+                    id: this.$plain.$utils.uuid(),
+                    path,
+                    param,
+                    component,
+                    initialized: true,
+                })
+                await this.$plain.nextTick()
+                await this.$plain.$utils.delay(500)
+                this.pageStack.splice(this.pageStack.length - 2, 1)
+                this.p_save()
+                this.$emit('push', {path, param})
+                this.$emit('redirect', {path, param})
             },
             async back(num = 1) {
                 if (this.pageStack.length === 1) {
