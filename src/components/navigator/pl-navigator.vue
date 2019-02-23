@@ -19,6 +19,21 @@
             root: {},
             id: {},
         },
+        watch: {
+            pageStack: {
+                immediate: true,
+                async handler(val) {
+                    await this.$plain.nextTick()
+                    for (let i = 0; i < this.$children.length; i++) {
+                        const $child = this.$children[i];
+                        if ($child.$children[0].$options.name !== 'pl-page') {
+                            console.error('page must be wrapped by page component, path:', $child.$attrs.path)
+                            return
+                        }
+                    }
+                },
+            }
+        },
         data() {
             let pageStack = []
             let tabsStorage, selfStorage;
@@ -56,6 +71,9 @@
                 await this.p_save()
                 this.$emit('push', {path, param})
             },
+            async redirect(path, param) {
+
+            },
             async back() {
                 if (this.pageStack.length === 1) {
                     console.info("is last page!!!")
@@ -64,10 +82,6 @@
                 const lastPage = this.pageStack[this.pageStack.length - 1]
                 const {path, param} = lastPage;
                 let lastPageInstance = this.p_getPageInstance(lastPage)
-                if (lastPageInstance.$options.name !== 'pl-page') {
-                    console.error('page must be wrapped by page component!!!')
-                    return
-                }
                 await lastPageInstance.hide()
                 this.pageStack.pop()
                 await this.p_save()

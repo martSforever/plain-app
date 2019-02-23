@@ -60,7 +60,7 @@
         position: relative;
         z-index: 1;
         background-color: white;
-        @include transition-all-cubic-bezier;
+        transition: $page-transition;
         .pl-header-content-wrapper {
             height: 100%;
             width: 100%;
@@ -71,7 +71,7 @@
             padding: 0 6px;
             box-sizing: border-box;
             background-color: white;
-            @include transition-all-cubic-bezier;
+            transition: $page-transition;
             .pl-header-left, .pl-header-right {
                 flex: 1;
                 font-size: 14px;

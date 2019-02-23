@@ -9,6 +9,9 @@
 </template>
 
 <script>
+
+    const pageTransitionDuration = 500
+
     export default {
         name: "pl-page",
         props: {
@@ -43,12 +46,12 @@
                 await this.$plain.nextTick()
                 await this.$plain.$utils.delay(25)
                 this.left = 0
-                await this.$plain.$utils.delay(1000)
+                await this.$plain.$utils.delay(pageTransitionDuration)
                 this.$emit('show')
             },
             async hide() {
                 this.left = this.totalWidth
-                await this.$plain.$utils.delay(1000)
+                await this.$plain.$utils.delay(pageTransitionDuration)
                 this.$emit('hide')
             },
             touchstart(e) {

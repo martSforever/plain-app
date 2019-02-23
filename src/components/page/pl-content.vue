@@ -36,7 +36,7 @@
 <style lang="scss">
     .pl-content {
         @include public-style;
-        @include transition-all-cubic-bezier;
+        transition: $page-transition;
         position: relative;
         background-color: white;
         width: 100%;

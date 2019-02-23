@@ -51,5 +51,6 @@ $margin:20px;                                   //默认margin大小
 $border-size:1px;                               //默认border大小
 $box-shadow: 0 0 10px $color-normal-border;
 $border:solid $border-size $color-normal-light;
+$page-transition:all 1s cubic-bezier(.28, 1, 0, 1);
 
 /*@formatter:on*/
