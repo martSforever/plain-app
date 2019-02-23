@@ -4,8 +4,8 @@
         <link-content>
             <link-button :label="`上个页面参数：${paramMsg}`"/>
             <link-button label="回退两个页面" @click="$navigator.back(2)" long/>
-            <link-button label="打开页面三" @click="$navigator.push('/demo-navigator-3',{msg})" long color="warn"/>
             <link-button label="重定向到页面四" @click="$navigator.redirect('/demo-navigator-4',{msg})" long color="error"/>
+            <link-button label="打开页面三" @click="$navigator.push('/demo-navigator-3',{msg})" long color="warn"/>
             <input type="text" v-model="msg">
         </link-content>
     </link-page>

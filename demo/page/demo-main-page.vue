@@ -22,15 +22,14 @@
         data() {
             return {
                 demos: [
-                    {icon: 'pl-tab', path: '/demo-navigator', label: 'navigator'},
-                    {icon: 'icon-nav', path: 'nav1', label: 'nav'},
-                    {icon: 'icon-icon', path: 'icon', label: 'icon'},
-                    {icon: 'icon-ioslist', path: 'list', label: 'list'},
-                    {icon: 'icon-youtubeplay', path: 'button', label: 'button'},
-                    {icon: 'icon-scroll', path: 'scroll', label: 'scroll'},
-                    {icon: 'icon-loading', path: 'loading', label: 'loading'},
-                    {icon: 'pl-switch-on', path: 'toggle', label: 'toggle'},
-                    {icon: 'icon-boardsheet', path: 'picker', label: 'picker'},
+                    {icon: 'icon-nav', path: '/demo-navigator', label: 'navigator'},
+                    {icon: 'icon-icon', path: '/demo-icon', label: 'icon'},
+                    {icon: 'icon-ioslist', path: '/demo-list', label: 'list'},
+                    {icon: 'icon-youtubeplay', path: '/demo-button', label: 'button'},
+                    {icon: 'icon-scroll', path: '/demo-scroll', label: 'scroll'},
+                    {icon: 'icon-loading', path: '/demo-loading', label: 'loading'},
+                    {icon: 'pl-switch-on', path: '/demo-toggle', label: 'toggle'},
+                    {icon: 'icon-boardsheet', path: '/demo-picker', label: 'picker'},
                 ]
             }
         },

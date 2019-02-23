@@ -1,4 +1,3 @@
-import app from './app/pl-app'
 import icon from './icon/pl-icon'
 import page from './page/pl-page'
 import content from './page/pl-content'
@@ -16,7 +15,6 @@ import navigator from './navigator/pl-navigator'
 
 
 const components = {
-    app,
     icon,
     page,
     content,
