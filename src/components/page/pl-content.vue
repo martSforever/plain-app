@@ -39,10 +39,17 @@
         transition: $page-transition;
         position: relative;
         background-color: white;
-        width: 100%;
+
         flex: 1;
-        &.pl-content-padding {
-            padding: 20px;
+        width: 100vw;
+        display: flex;
+        flex-direction: column;
+        box-sizing: border-box;
+        overflow-y: scroll;
+        overflow-x: hidden;
+
+        &.lv-content-padding {
+            padding: $padding;
         }
     }
 </style>
