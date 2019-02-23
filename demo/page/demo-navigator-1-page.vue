@@ -3,7 +3,7 @@
         <link-header title="页面一"/>
         <link-content>
             <link-button :label="`上个页面参数：${paramMsg}`"/>
-            <link-button label="打开页面二" @click="$navigator.push('/demo-navigator-2',{msg})" long/>
+            <link-button label="打开页面二" @click="$navigator.push('/demo-navigator-2',{msg})" long color="success"/>
             <input type="text" v-model="msg">
 
         </link-content>
