@@ -74,18 +74,28 @@
             async redirect(path, param) {
 
             },
-            async back() {
+            async back(num = 1) {
                 if (this.pageStack.length === 1) {
                     console.info("is last page!!!")
                     return
                 }
+                /*获取最后一个pageInstance实例，调用退出动画*/
                 const lastPage = this.pageStack[this.pageStack.length - 1]
                 const {path, param} = lastPage;
                 let lastPageInstance = this.p_getPageInstance(lastPage)
                 await lastPageInstance.hide()
-                this.pageStack.pop()
+
+                /*初始化需要初始化的页面*/
+                this.pageStack.forEach((page, index) => !page.initialized && index >= (this.pageStack.length - 2 - num) && (page.initialized = true))
+
+                /*弹出页面*/
+                while (num > 0) {
+                    this.pageStack.pop()
+                    num--
+                }
+
+                /*保存*/
                 await this.p_save()
-                this.pageStack.forEach((page, index) => !page.initialized && index >= this.pageStack.length - 2 && (page.initialized = true))
                 this.$emit('back', {path, param})
                 return {path, param}
             },
